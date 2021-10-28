@@ -9,3 +9,10 @@ BeautifulSoup
     find()
 
 (TAG,{CLASS:NAME})[UNDER_TAG]
+
+BeautifulSoup(HTML, "HTML.parse")
+
+request
+requests.get(URL)
+
+urllib
