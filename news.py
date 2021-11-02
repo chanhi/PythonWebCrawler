@@ -14,7 +14,8 @@ def find_hdline():
     print(i.text, '\n') #기사제목 출력
     link_list.append((i.find_all('a')[0].get('href')))
     soup_headline_news = bs(requests.get(link_list[0]).text, "html.parser")
-    for i in soup_headline_news.find_all('p'):
+    text_headline_news = soup_headline_news.find_all('p')
+    for i in text_headline_news[:-3]:
       print(i.text) #찾은 뉴스의 기사를 출력
 
   return link_list
