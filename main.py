@@ -11,4 +11,4 @@ from news import find_hdline, test
 #  print(i.text)
 
 find_hdline()
-test()
+#test()

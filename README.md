@@ -20,6 +20,10 @@ BeautifulSoup
 
 찾은 내용중 []안에 있는 element를 출력
 
+    .strip()
+
+공백 제거
+
 (TAG,{CLASS:NAME})[UNDER_TAG]
 
     BeautifulSoup(HTML, "HTML.parse")
@@ -29,7 +33,7 @@ requests.get(URL)
 
 urllib
 
-###indeed.py
+### indeed.py
 
 'extract_indeed_pages()'
 class가 pagination이면서 제일 먼저 있는 div
@@ -41,4 +45,10 @@ class가 pagination이면서 제일 먼저 있는 div
     pagination.find_all('a')
 
 max_page에 1...마지막 페이지 까지 저장
+
+### so.py
+
+    find("div", {"class";"s-pagination"}).find_all('a')
+
+indeed.py와 다르게 한 줄로 줄임(사실 indeed.py도 위와 같이 바꿔도 상관없긴 함)
 
