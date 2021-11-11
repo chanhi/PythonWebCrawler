@@ -5,10 +5,8 @@ from save import save_to_file
 #from news import find_hdline, test
 
 indeed_jobs = get_indeed_jobs()
-print(indeed_jobs)
-#so_jobs = get_so_jobs()
-#print(so_jobs)
-jobs = indeed_jobs# + so_jobs
+so_jobs = get_so_jobs()
+jobs = indeed_jobs + so_jobs
 save_to_file(jobs)
 
 #for i in get_quotes():

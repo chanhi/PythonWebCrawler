@@ -4,6 +4,14 @@ from bs4 import BeautifulSoup
 LIMIT = 50
 URL = f"https://www.indeed.com/jobs?q=python&limit={LIMIT}"
 
+def new_last_page():
+  result = requests.get(URL)
+  soup = BeautifulSoup(result.text, "html.parser")
+  page_ex = True
+  while page_ex == True:
+    page_num = 0
+    cur_page = f"{URL}&start={page_num*LIMIT}"
+
 
 def get_last_page():
     result = requests.get(URL)
@@ -17,7 +25,7 @@ def get_last_page():
     return max_page
 
 def extract_job(html):
-    title = html.find("h2",{"class": "jobTitle"}).find("a")["title"]
+    title = html.find("h2",{"class": "jobTitle"}).find("span").string
     company = html.find("span", {"class": "companyName"})
     if company:
       company_anchor = company.find("a")
@@ -30,7 +38,6 @@ def extract_job(html):
       company = None
     location = html.find("div",{"class": "companyLocation"}).string
     job_id = html["data-jk"]
-    print(title, company, location)
     return {
       'title': title,
       'company': company,
@@ -41,10 +48,10 @@ def extract_job(html):
 def extract_jobs(last_page):
   jobs = []
   for page in range(last_page):
-    print(f"Scrapping indeed page {page}")
+    print(f"Scrapping indeed page {page+1}")
     result = requests.get(f"{URL}&start={page*LIMIT}")
     soup = BeautifulSoup(result.text, "html.parser")
-    results = soup.find_all("a",{"class": "tabItem"})
+    results = soup.find_all("a",{"class": "fs-unmask"})
     for result in results:
       job = extract_job(result)
       jobs.append(job)
